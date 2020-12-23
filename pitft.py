@@ -331,6 +331,7 @@ def install_fbcp():
     if not shell.run_command("apt-get --yes --allow-downgrades --allow-remove-essential --allow-change-held-packages install cmake", True):
         warn_exit("Apt failed to install software!")
 
+    shell.run_command("rm -Rf build")
     shell.run_command("mkdir build")
     shell.chdir("build")
     print("Building rpi-fbcp...")
