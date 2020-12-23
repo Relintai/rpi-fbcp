@@ -107,7 +107,7 @@ int process_interlaced() {
         }
 
         //not yet sure if needed, but zero out the rest
-        for(int i= (row_offset + 1 % INTERLACE_NUM); i< vinfo.xres * vinfo.yres / 2; i += INTERLACE_NUM) {
+        for(int i= ((row_offset + 1) % INTERLACE_NUM); i< vinfo.xres * vinfo.yres / 2; i += INTERLACE_NUM) {
           p2[i] = 0;
         }
 
