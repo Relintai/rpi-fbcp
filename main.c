@@ -101,15 +101,21 @@ int process_interlaced() {
                  *p1 = (uint32_t *)screenbuf[1],
                  *p2 = (uint32_t *)screenbuf[2];
 
+
         //Only xor the rows we need
-        for(int i=row_offset; i< vinfo.xres * vinfo.yres / 2; i += INTERLACE_NUM) {
-          p2[i] = p0[i] ^ p1[i];
-        }
+        for(int y = row_offset; y < vinfo.yres / 2; y += INTERLACE_NUM) {
+	  int i = y * vinfo.xres;
+
+          for(int x=0; x < vinfo.xres; ++x) {
+            p2[i] = p0[i] ^ p1[i];
+	    ++i;
+          }
+	}
 
         //not yet sure if needed, but zero out the rest
-        for(int i= ((row_offset + 1) % INTERLACE_NUM); i< vinfo.xres * vinfo.yres / 2; i += INTERLACE_NUM) {
-          p2[i] = 0;
-        }
+        //for(int i= ((row_offset + 1) % INTERLACE_NUM); i< vinfo.xres * vinfo.yres / 2; i += INTERLACE_NUM * vinfo.xres) {
+        //  p2[i] = 0;
+       // }
 
         // Find bounding rect of nonzero pixels
         uint32_t first;
@@ -280,9 +286,9 @@ int process_skip_rows() {
         }
 
         //not yet sure if needed, but zero out the rest
-        for(int i= 0; i< vinfo.xres * vinfo.yres / 2; i += SKIP_ROWS) {
-          p2[i] = 0;
-        }
+   //     for(int i= 0; i< vinfo.xres * vinfo.yres / 2; i += SKIP_ROWS) {
+     //     p2[i] = 0;
+       // }
 
         // Find bounding rect of nonzero pixels
         uint32_t first;
@@ -501,7 +507,9 @@ int main(int argc, char **argv) {
     setlogmask(LOG_UPTO(LOG_DEBUG));
     openlog("fbcp", LOG_NDELAY | LOG_PID, LOG_USER);
 
-    return process_skip_rows();
+    //return process();
+    //return process_skip_rows();
+    return process_interlaced();
 }
 
 
