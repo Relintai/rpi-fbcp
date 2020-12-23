@@ -154,7 +154,7 @@ int process_interlaced() {
           uint16_t *src = &screenbuf[bufNum][firstRow * vinfo.xres + firstCol];
           uint16_t *dst = (uint16_t *)&fbp[(firstRow * vinfo.xres + firstCol) * 2];
 
-	  uint32_t moffset = vinfo.xres * INTERLACE_NUM;
+	        uint32_t moffset = vinfo.xres * INTERLACE_NUM;
 
           for(int row = firstRow; row <= lastRow; row += INTERLACE_NUM) {
             memcpy(dst, src, bytes);
