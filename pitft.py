@@ -330,14 +330,7 @@ def install_fbcp():
     print("Installing cmake...")
     if not shell.run_command("apt-get --yes --allow-downgrades --allow-remove-essential --allow-change-held-packages install cmake", True):
         warn_exit("Apt failed to install software!")
-    print("Downloading rpi-fbcp...")
-    shell.pushd("/tmp")
-    shell.run_command("curl -sLO https://github.com/adafruit/rpi-fbcp/archive/master.zip")
-    print("Uncompressing rpi-fbcp...")
-    shell.run_command("rm -rf /tmp/rpi-fbcp-master")
-    if not shell.run_command("unzip master.zip", True):
-        warn_exit("Failed to uncompress fbcp!")
-    shell.chdir("rpi-fbcp-master")
+
     shell.run_command("mkdir build")
     shell.chdir("build")
     print("Building rpi-fbcp...")
@@ -348,8 +341,8 @@ def install_fbcp():
         warn_exit("Failed to make fbcp!")
     print("Installing rpi-fbcp...")
     shell.run_command("install fbcp /usr/local/bin/fbcp")
-    shell.popd()
-    shell.run_command("rm -rf /tmp/rpi-fbcp-master")
+
+    shell.chdir("..")
 
     # Start fbcp in the appropriate place, depending on init system:
     if SYSTEMD:
