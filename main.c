@@ -188,7 +188,7 @@ int process_interlaced() {
     vc_dispmanx_display_close(display);
 }
 
-#define SKIP_ROWS 1
+#define SKIP_ROWS 2
 
 int process_skip_rows() {
     DISPMANX_DISPLAY_HANDLE_T display;
@@ -281,9 +281,14 @@ int process_skip_rows() {
                  *p2 = (uint32_t *)screenbuf[2];
 
         //Only xor the rows we need
-        for(int i=0; i< vinfo.xres * vinfo.yres / 2; i += SKIP_ROWS) {
-          p2[i] = p0[i] ^ p1[i];
-        }
+        for(int y = 0; y < vinfo.yres / 2; y += SKIP_ROWS) {
+	  int i = y * vinfo.xres;
+
+          for(int x=0; x < vinfo.xres; ++x) {
+            p2[i] = p0[i] ^ p1[i];
+	    ++i;
+          }
+	}
 
         //not yet sure if needed, but zero out the rest
    //     for(int i= 0; i< vinfo.xres * vinfo.yres / 2; i += SKIP_ROWS) {
@@ -508,8 +513,8 @@ int main(int argc, char **argv) {
     openlog("fbcp", LOG_NDELAY | LOG_PID, LOG_USER);
 
     //return process();
-    //return process_skip_rows();
-    return process_interlaced();
+    return process_skip_rows();
+    //return process_interlaced();
 }
 
 
