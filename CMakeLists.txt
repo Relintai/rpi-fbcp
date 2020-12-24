@@ -21,3 +21,7 @@ set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
 set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
 
 set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
+
+set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
+
+set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")

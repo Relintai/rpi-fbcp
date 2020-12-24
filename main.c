@@ -630,11 +630,11 @@ int main(int argc, char **argv) {
     setlogmask(LOG_UPTO(LOG_DEBUG));
     openlog("fbcp", LOG_NDELAY | LOG_PID, LOG_USER);
 
-    //return process();
+    return process();
 //    return process_skip_rows();
     //return process_interlaced();
     
-    return process_test();
+    //return process_test();
 }
 
 
