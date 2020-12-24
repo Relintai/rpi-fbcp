@@ -16,3 +16,8 @@ target_link_libraries(fbcp bcm_host)
 
 set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
 
+
+
+set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
+
+set (CMAKE_C_FLAGS "-std=gnu99 ${CMAKE_C_FLAGS}")
