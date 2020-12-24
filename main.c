@@ -510,6 +510,8 @@ int process() {
 }
 
 
+#define TEST_PX 100
+
 int process_test() {
     DISPMANX_DISPLAY_HANDLE_T display;
     DISPMANX_MODEINFO_T display_info;
@@ -602,12 +604,12 @@ int process_test() {
             vinfo.xres * (lastRow - firstRow + 1) * 2);
 #else
 
-          int bytes = (100) * 2;
+          int bytes = (TEST_PX) * 2;
           uint16_t
             *src = &screenbuf[bufNum][0],
             *dst = (uint16_t *)&fbp[0];
 
-          for(int row=0; row < 100; row++) {
+          for(int row=0; row < TEST_PX; row++) {
             memcpy(dst, src, bytes);
             src += vinfo.xres;
             dst += vinfo.xres;
