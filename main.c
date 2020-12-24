@@ -611,7 +611,7 @@ int process_test() {
             memcpy(dst, src, bytes);
             src += vinfo.xres;
             dst += vinfo.xres;
-          }
+
 #endif
           bufNum = 1 - bufNum;
         }
